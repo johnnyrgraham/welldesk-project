@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WellDesk — Mobile Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--stone:#F8F6F3;--stone2:#F2F0EC;--ink:#2E2E2E;--mid:#6B6B67;--soft:#8A8A86;--clay:#C97B63;--olive:#566347;--mist:#DCE7E2;--mist2:#ECF1EE;--line:#E4E1DC}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#EBE8E3;font-family:'Inter',system-ui,sans-serif;color:var(--ink)}
+h1,h2,h3,.disp{font-family:'Outfit',system-ui,sans-serif}
+.shell{max-width:1400px;margin:0 auto;padding:40px 24px 80px}
+.shell-head{text-align:center;margin-bottom:36px}
+.shell-head .mark{font-family:'Outfit';font-weight:700;letter-spacing:.18em;font-size:15px}
+.shell-head h1{font-size:26px;font-weight:600;margin:10px 0 6px}
+.shell-head p{color:var(--mid);font-size:14px}
+.row{display:flex;gap:36px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.opt{width:390px}
+.opt-label{text-align:center;margin-bottom:14px}
+.opt-label .tag{font-family:'Outfit';font-weight:600;font-size:13px;letter-spacing:.14em;color:var(--olive)}
+.opt-label p{font-size:12.5px;color:var(--mid);margin-top:4px;line-height:1.5}
+.phone{width:390px;height:780px;background:#fff;border-radius:38px;border:10px solid #26251F;overflow:hidden;box-shadow:0 24px 60px rgba(40,36,30,.18);position:relative}
+.scr{height:100%;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative}
+.scr::-webkit-scrollbar{display:none}
+/* shared mobile components */
+.hd{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(255,255,255,.92);backdrop-filter:blur(6px)}
+.hd .mark{font-family:'Outfit';font-weight:700;letter-spacing:.16em;font-size:13px}
+.pill{background:var(--clay);color:#fff;font-family:'Outfit';font-weight:600;font-size:11.5px;letter-spacing:.06em;padding:9px 16px;border-radius:6px;border:0}
+.cta{display:inline-block;background:var(--clay);color:#fff;font-family:'Outfit';font-weight:600;font-size:13px;letter-spacing:.07em;padding:15px 26px;border-radius:6px;border:0}
+.ghostlink{font-size:12.5px;font-weight:600;color:var(--ink)}
+.micro{font-size:11px;color:var(--soft);letter-spacing:.02em}
+.sec{padding:56px 24px}
+.sec h2{font-size:24px;font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.body{font-size:13.5px;color:var(--mid);line-height:1.65}
+.faq{border-top:1px solid var(--line)}
+.faq div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 0;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:500}
+.faq span{color:var(--soft);font-size:16px;font-weight:400}
+.form{display:flex;flex-direction:column;gap:9px}
+.form input{padding:13px 14px;border:1px solid #D8D6D2;border-radius:6px;font-size:13px;background:#fff;font-family:inherit}
+.form .join{background:var(--ink);color:#fff;font-family:'Outfit';font-weight:600;font-size:12px;letter-spacing:.07em;padding:14px;border-radius:6px;border:0}
+.ftr{padding:26px 24px 34px;font-size:10.5px;color:var(--mid);line-height:1.7}
+img{display:block}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* ---- OPTION A ---- */
+.a-hero{position:relative}
+.a-hero img{width:100%;height:520px;object-fit:cover;object-position:60% 40%}
+.a-hero .ov{position:absolute;inset:auto 0 0 0;padding:26px 22px 30px;background:linear-gradient(180deg,rgba(248,246,243,0) 0%,rgba(248,246,243,.88) 42%,rgba(248,246,243,.97) 100%)}
+.badge{display:inline-block;background:var(--mist2);color:var(--olive);font-size:10.5px;font-weight:600;letter-spacing:.04em;padding:7px 13px;border-radius:999px;margin-bottom:12px}
+.a-hero h1{font-size:30px;font-weight:600;line-height:1.12;letter-spacing:-.015em;margin-bottom:14px}
+.capstrip{text-align:center;padding:44px 32px;font-family:'Outfit';font-size:16px;font-weight:500;color:var(--olive)}
+.carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 24px 8px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.card{flex:0 0 76%;scroll-snap-align:start}
+.card img{width:100%;height:240px;object-fit:cover;border-radius:10px}
+.card .t{font-family:'Outfit';color:var(--clay);font-weight:700;font-size:17px;margin:12px 0 3px}
+.card h3{font-size:14.5px;font-weight:600}
+.card p{font-size:12px;color:var(--mid);margin-top:3px;line-height:1.55}
+.bene{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px;margin-top:26px}
+.bene h3{font-size:13.5px;font-weight:600;margin-bottom:5px}
+.bene p{font-size:11.5px;color:var(--mid);line-height:1.55}
+.story img{width:100%;height:300px;object-fit:cover;border-radius:10px;margin-bottom:22px}
+.nzbadge{display:inline-block;background:#E8E5E0;font-size:11px;font-weight:600;padding:8px 14px;border-radius:999px;margin-top:16px}
+.offer{text-align:center;background:#fff}
+.offer .price{font-family:'Outfit';font-size:32px;font-weight:700;margin:14px 0 4px}
+.offer .inc{color:var(--clay);font-weight:600;font-size:12.5px;margin-bottom:18px}
+.close-a{background:var(--mist);text-align:center}
+.close-a .sig{font-size:12px;color:var(--olive);font-weight:500;margin-bottom:10px}
+.close-a h2{margin-bottom:18px}
+.close-a .nr{font-size:12px;color:var(--mid);margin:26px 0 12px}
+/* ---- OPTION B ---- */
+.buybar{position:sticky;top:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:rgba(251,250,248,.94);backdrop-filter:blur(6px)}
+.buybar .p{font-size:11.5px;font-weight:600}
+.buybar .r{display:flex;align-items:center;gap:10px}
+.stage{position:sticky;top:47px;z-index:5;height:330px;background:#F2F0EC;overflow:hidden}
+.stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.stage img.on{opacity:1}
+.stage .dots{position:absolute;left:16px;bottom:14px;display:flex;gap:6px;z-index:6}
+.stage .dots i{width:7px;height:7px;border-radius:4px;background:rgba(46,46,46,.28);transition:all .4s}
+.stage .dots i.on{width:20px;background:var(--clay)}
+.chap{position:relative;z-index:10;background:#FBFAF8;padding:52px 24px;box-shadow:0 -1px 0 var(--line)}
+.chap .eyebrow{font-family:'Outfit';font-size:10.5px;font-weight:600;letter-spacing:.18em;color:var(--clay);margin-bottom:12px}
+.chap h2{font-size:23px;font-weight:600;line-height:1.18;margin-bottom:12px}
+.step{display:flex;gap:14px;align-items:flex-start;margin-top:18px}
+.step .n{flex:0 0 34px;height:34px;border-radius:50%;background:#EFECE7;color:var(--clay);font-family:'Outfit';font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.step h3{font-size:13.5px;font-weight:600}
+.step p{font-size:12px;color:var(--mid);line-height:1.55;margin-top:2px}
+.specs{background:#F2F0EC;border-radius:10px;padding:16px 18px;margin-top:18px;font-size:12px;line-height:2}
+.specs b{font-weight:600}
+.specs span{color:var(--mid)}
+.quoteb{background:var(--mist2);text-align:center;padding:52px 30px;position:relative;z-index:10}
+.quoteb p{font-family:'Outfit';font-size:16.5px;font-weight:500;line-height:1.5}
+.quoteb .who{font-size:11px;color:var(--soft);margin-top:12px}
+/* ---- OPTION C ---- */
+.c-hero{position:relative}
+.c-hero img{width:100%;height:560px;object-fit:cover;object-position:60% 45%}
+.c-hero .ov{position:absolute;left:0;right:0;bottom:0;padding:24px 22px 30px;background:linear-gradient(180deg,rgba(248,246,243,0),rgba(248,246,243,.92) 55%)}
+.c-hero h1{font-size:27px;font-weight:600;line-height:1.14;letter-spacing:-.015em;margin-bottom:14px}
+.c-img img{width:100%;height:420px;object-fit:cover}
+.c-cap{text-align:center;padding:40px 34px;font-family:'Outfit';font-size:16.5px;font-weight:500;line-height:1.45}
+.c-pair{padding:0 14px;display:flex;flex-direction:column;gap:26px}
+.c-pair img{width:100%;height:300px;object-fit:cover;border-radius:8px}
+.c-pair p{font-size:12.5px;color:var(--mid);font-weight:500;margin-top:9px;text-align:center}
+.c-offer{background:var(--stone);text-align:center;padding:60px 26px}
+.c-offer h2{font-size:23px;font-weight:600;margin-bottom:8px}
+.c-offer .l{font-size:13px;color:var(--mid);font-weight:500;margin-bottom:20px}
+</style></head>
+<body>
+<div class="shell">
+ <div class="shell-head">
+  <div class="mark">WELLDESK*</div>
+  <h1>Mobile concepts &mdash; three directions</h1>
+  <p>Each phone scrolls. Prices, dates and specs are placeholders pending confirmation.<br>Photography: current prototype shots + lifestyle render &mdash; final shoot to follow the chosen direction.</p>
+ </div>
+ <div class="row">
+  <div class="opt"><div class="opt-label"><span class="tag">OPTION A &mdash; MORNING LIGHT</span><p>A sunlit lifestyle scroll. One story, one CTA, the 60-second build as a swipeable feature.</p></div><div class="phone">
+<div class="scr">
+ <div class="hd"><span class="mark">WELLDESK*</span><button class="pill">Pre-order</button></div>
+ <div class="a-hero"><img src="images/hero.jpg" alt="">
+  <div class="ov">
+   <span class="badge">&#9201;&nbsp; Builds in under 60 seconds</span>
+   <h1>Bring your work into the light.</h1>
+   <a class="cta">PRE-ORDER YOUR DESK</a>
+   <div style="margin-top:12px"><a class="ghostlink">or join the waitlist &rarr;</a></div>
+   <div class="micro" style="margin-top:12px">Limited first run &middot; Built in New Zealand &middot; Est. delivery [INSERT DATE]</div>
+  </div>
+ </div>
+ <div class="capstrip">Work better. Move often. Feel good.</div>
+ <div class="sec" style="background:var(--stone);padding-left:0;padding-right:0">
+  <h2 style="padding:0 24px 18px">From box to desk in one minute.</h2>
+  <div class="carousel">
+   <div class="card"><img src="images/sunlit.jpg"><div class="t">0:00</div><h3>Unpack</h3><p>Five pieces, one box. Lay them out.</p></div>
+   <div class="card"><img src="images/standing.jpg"><div class="t">0:20</div><h3>Slot together</h3><p>Each joint clicks in by hand &mdash; no toolbox.</p></div>
+   <div class="card"><img src="images/seated.jpg"><div class="t">0:60</div><h3>Start working</h3><p>Set your height. Done.</p></div>
+  </div>
+ </div>
+ <div class="sec">
+  <h2>Everything you need. Nothing you don&rsquo;t.</h2>
+  <div class="bene">
+   <div><h3>Only five pieces</h3><p>Fewer parts, less packaging, no leftover screws.</p></div>
+   <div><h3>No tools. Ever.</h3><p>Slots together by hand, comes apart just as easily.</p></div>
+   <div><h3>Adjusts to your day</h3><p>Sit, stand, reset &mdash; find the height that feels right.</p></div>
+   <div><h3>Designed to be seen</h3><p>Belongs in the living room, not hidden in a corner.</p></div>
+  </div>
+ </div>
+ <div class="sec story" style="background:var(--mist2)">
+  <img src="images/sunlit.jpg">
+  <h2>Made for the way we really work.</h2>
+  <p class="body" style="margin-top:12px">Flat-packs are flimsy. Standing desks are bulky and motorised. We stripped the desk back to five essential pieces and rebuilt it around three ideas: simple to assemble, easy to adjust, beautiful enough to live anywhere.</p>
+  <span class="nzbadge">&#9673;&nbsp; Designed &amp; made in New Zealand</span>
+ </div>
+ <div class="sec offer">
+  <div class="micro" style="letter-spacing:.16em">FIRST-DROP PRE-ORDER</div>
+  <div class="price">$[INSERT PRICE] NZD</div>
+  <div class="inc">includes free carry bag &mdash; first drop only</div>
+  <a class="cta">PRE-ORDER YOUR DESK</a>
+  <div class="micro" style="margin-top:14px">Secure Stripe checkout &middot; NZ-wide shipping &middot; Simple returns + warranty</div>
+ </div>
+ <div class="sec" style="background:var(--stone)">
+  <h2 style="font-size:20px;margin-bottom:16px">Questions, answered.</h2><div class="faq"><div>When will my desk ship?<span>+</span></div><div>What is it made from? [INSERT MATERIAL]<span>+</span></div><div>How stable is it? Max load: [INSERT]<span>+</span></div><div>Do you ship NZ-wide?<span>+</span></div><div>Can I return it?<span>+</span></div></div>
+ </div>
+ <div class="sec close-a">
+  <div class="sig">Work better. Move often. Feel good.</div>
+  <h2>Build a better place to work.</h2>
+  <a class="cta">PRE-ORDER YOUR DESK</a>
+  <div class="nr">Not ready? Get early access to the next drop:</div>
+  <div class="form"><input placeholder="First name"><input placeholder="Email address"><button class="join">JOIN THE WAITLIST</button></div>
+ </div>
+ <div class="ftr">WELLDESK* — Built in New Zealand. Made to move with you.<br>TikTok · Instagram · Shipping · Returns · Privacy · support@[INSERT]</div>
+</div></div></div>
+  <div class="opt"><div class="opt-label"><span class="tag">OPTION B &mdash; THE SHOWROOM</span><p>One desk, pinned in view. It changes state as the chapters scroll past it &mdash; try it.</p></div><div class="phone">
+<div class="scr" id="bscr">
+ <div class="buybar"><span class="mark">WELLDESK*</span><span class="r"><span class="p">$[INSERT PRICE] NZD</span><button class="pill">Pre-order</button></span></div>
+ <div class="stage">
+  <img src="images/sunlit.jpg" data-s="1" class="on">
+  <img src="images/standing.jpg" data-s="2">
+  <img src="images/seated.jpg" data-s="3">
+  <img src="images/hero.jpg" data-s="4">
+  <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+ </div>
+ <div class="chap" data-state="1">
+  <div class="eyebrow">01 &mdash; THE DESK</div>
+  <h2>A better desk, built in under 60 seconds.</h2>
+  <p class="body">A beautifully simple, tool-free adjustable desk designed to fit the way you work. No tools. No flimsy flat-pack parts.</p>
+  <div style="margin-top:18px"><a class="cta">PRE-ORDER YOUR DESK</a></div>
+  <div style="margin-top:12px"><a class="ghostlink">join the waitlist &rarr;</a></div>
+  <div class="micro" style="margin-top:14px">Work better. Move often. Feel good.</div>
+ </div>
+ <div class="chap" data-state="2">
+  <div class="eyebrow">02 &mdash; THE BUILD</div>
+  <h2>Five pieces. Zero tools. One minute.</h2>
+  <div class="step"><div class="n">1</div><div><h3>Unpack</h3><p>Open the box, lay out the five components.</p></div></div>
+  <div class="step"><div class="n">2</div><div><h3>Slot together</h3><p>Each joint clicks in by hand.</p></div></div>
+  <div class="step"><div class="n">3</div><div><h3>Start working</h3><p>Set your height and make it yours.</p></div></div>
+ </div>
+ <div class="chap" data-state="3">
+  <div class="eyebrow">03 &mdash; THE CRAFT</div>
+  <h2>Designed here. Made to last.</h2>
+  <p class="body">Stripped back to its essential parts and rebuilt around three ideas: simple to assemble, easy to adjust, beautiful enough to live anywhere.</p>
+  <div class="specs">
+   <b>Material:</b> <span>[INSERT &mdash; natural ply, visible grain]</span><br>
+   <b>Desktop:</b> <span>[INSERT DIMENSIONS]</span><br>
+   <b>Height settings:</b> <span>[INSERT NUMBER / RANGE]</span><br>
+   <b>Max load:</b> <span>[INSERT]</span>
+  </div>
+ </div>
+ <div class="chap" data-state="4">
+  <div class="eyebrow">04 &mdash; THE OFFER</div>
+  <h2>Be one of the first to own it.</h2>
+  <p class="body">A limited first production run &mdash; with a free carry bag for the first drop. Once this allocation is gone, it&rsquo;s gone.</p>
+  <div style="margin-top:18px"><a class="cta">PRE-ORDER YOUR DESK</a></div>
+  <div class="micro" style="margin-top:14px">Secure Stripe checkout &middot; NZ-wide shipping &middot; Simple returns + warranty</div>
+ </div>
+ <div class="quoteb"><p>&ldquo;I thought there had to be more to it. It genuinely took less than a minute.&rdquo;</p><div class="who">[TESTER NAME] &middot; early tester</div></div>
+ <div class="sec" style="background:#FBFAF8;position:relative;z-index:10">
+  <h2 style="font-size:20px;margin-bottom:16px">Questions, answered.</h2><div class="faq"><div>When will my desk ship?<span>+</span></div><div>What is it made from? [INSERT MATERIAL]<span>+</span></div><div>How stable is it? Max load: [INSERT]<span>+</span></div><div>Do you ship NZ-wide?<span>+</span></div><div>Can I return it?<span>+</span></div></div>
+ </div>
+ <div class="sec" style="background:var(--stone2);text-align:center;position:relative;z-index:10">
+  <h2 style="font-size:20px;margin-bottom:8px">Get early access to the next drop.</h2>
+  <p class="body" style="margin-bottom:18px">Updates, behind-the-scenes progress, first access.</p>
+  <div class="form"><input placeholder="First name"><input placeholder="Email address"><button class="join">JOIN THE WAITLIST</button></div>
+ </div>
+ <div class="ftr">WELLDESK* — Built in New Zealand. Made to move with you.<br>TikTok · Instagram · Shipping · Returns · Privacy · support@[INSERT]</div>
+</div></div></div>
+  <div class="opt"><div class="opt-label"><span class="tag">OPTION C &mdash; THE LOOKBOOK</span><p>Image-first. Five photographs and ten sentences do all the selling.</p></div><div class="phone">
+<div class="scr">
+ <div class="hd"><span class="mark">WELLDESK*</span><button class="pill">Pre-order</button></div>
+ <div class="c-hero"><img src="images/hero.jpg">
+  <div class="ov">
+   <h1>Bring your work into the light.</h1>
+   <a class="cta">PRE-ORDER YOUR DESK</a>
+   <div class="micro" style="margin-top:12px">Built in New Zealand &middot; Limited first run</div>
+  </div>
+ </div>
+ <div class="c-cap" style="color:var(--olive);font-size:14.5px">Work better. Move often. Feel good.</div>
+ <div class="c-img"><img src="images/standing.jpg"></div>
+ <div class="c-cap">Five pieces. No tools.<br>Built in under 60 seconds.</div>
+ <div class="c-pair">
+  <div><img src="images/sunlit.jpg"><p>Natural NZ ply. Every desk has its own grain.</p></div>
+  <div><img src="images/seated.jpg"><p>Adjusts to your day.</p></div>
+ </div>
+ <div class="c-img" style="margin-top:26px"><img src="images/hero.jpg" style="object-position:50% 70%"></div>
+ <div class="c-cap">Designed to be seen.</div>
+ <div class="c-offer">
+  <h2>Be one of the first to own it.</h2>
+  <div class="l">$[INSERT PRICE] NZD &nbsp;&middot;&nbsp; limited first run &nbsp;&middot;&nbsp; free carry bag</div>
+  <a class="cta">PRE-ORDER YOUR DESK</a>
+  <div class="micro" style="margin-top:14px">Secure Stripe checkout &middot; NZ-wide shipping &middot; Simple returns + warranty</div>
+ </div>
+ <div class="sec">
+  <h2 style="font-size:20px;margin-bottom:16px">Questions, answered.</h2><div class="faq"><div>When will my desk ship?<span>+</span></div><div>What is it made from? [INSERT MATERIAL]<span>+</span></div><div>How stable is it? Max load: [INSERT]<span>+</span></div><div>Do you ship NZ-wide?<span>+</span></div><div>Can I return it?<span>+</span></div></div>
+ </div>
+ <div class="sec" style="background:var(--stone2);text-align:center">
+  <p class="body" style="margin-bottom:16px">Not ready to pre-order? Get early access to the next drop.</p>
+  <div class="form"><input placeholder="First name"><input placeholder="Email address"><button class="join">JOIN THE WAITLIST</button></div>
+ </div>
+ <div class="ftr">WELLDESK* — Built in New Zealand. Made to move with you.<br>TikTok · Instagram · Shipping · Returns · Privacy · support@[INSERT]</div>
+</div></div></div>
+ </div>
+</div>
+
+<script>
+(function(){
+  var scr=document.getElementById('bscr');
+  var imgs=scr.querySelectorAll('.stage img');
+  var dots=scr.querySelectorAll('.dots i');
+  var chaps=scr.querySelectorAll('.chap[data-state]');
+  function set(s){
+    imgs.forEach(function(el){el.classList.toggle('on',el.dataset.s===s)});
+    dots.forEach(function(el,i){el.classList.toggle('on',String(i+1)===s)});
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting) set(e.target.dataset.state); });
+  },{root:scr,rootMargin:'-40% 0px -45% 0px'});
+  chaps.forEach(function(c){io.observe(c)});
+})();
+</script>
+</body></html>
